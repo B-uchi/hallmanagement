@@ -6,6 +6,10 @@ const hallSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  capacity: {
+    type: Number,
+    required: true,
+  },
   location: {
     type: String,
     required: true,
@@ -21,6 +25,7 @@ const hallSchema = new mongoose.Schema({
       ref: 'User',
     },
     examTitle: String,
+    examDate: Date,
     allocatedAt: Date,
   }
 }, { timestamps: true });

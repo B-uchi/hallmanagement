@@ -15,6 +15,10 @@ const hallRequestSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  examDate: {
+    type: Date,
+    required: true,
+  },
   status: {
     type: String,
     enum: ['pending', 'approved', 'rejected'],

@@ -108,6 +108,7 @@ exports.requestHall = async (req, res) => {
       lecturer: req.user._id,
       hall: req.params.hallId,
       examTitle: req.body.examTitle,
+      examDate: new Date(req.body.examDate).toISOString(),
     });
     res.status(201).json({ status: 'success', request });
   } catch (error) {
@@ -119,7 +120,7 @@ exports.requestHall = async (req, res) => {
 exports.getLecturerRequests = async (req, res) => {
   try {
     const requests = await HallRequest.find({ lecturer: req.user._id, status: 'pending' })
-      .populate('hall', 'name location')
+      .populate('hall', 'name location capacity')
       .sort('-createdAt');
 
     res.status(200).json({

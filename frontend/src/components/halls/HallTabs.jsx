@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../utils/axios';
-import { IoLocationOutline, IoAddCircleOutline, IoPerson, IoPersonOutline, IoBookOutline, IoPencil, IoTrash, IoClose } from "react-icons/io5";
-import { MdEventNote } from "react-icons/md";
+import { IoLocationOutline, IoAddCircleOutline, IoPersonOutline, IoBookOutline, IoPencil, IoTrash, IoClose } from "react-icons/io5";
+import { FaHashtag } from "react-icons/fa";
 import { toast } from 'sonner';
 
 const HallTabs = ({ userRole, onRequestHall, rerender, onEditHall }) => {
@@ -115,6 +115,10 @@ const HallTabs = ({ userRole, onRequestHall, rerender, onEditHall }) => {
                 <p className="text-gray-600 flex items-center">
                   <IoLocationOutline className="text-lg mr-2" />
                   {hall.location}
+                </p>
+                <p className="text-gray-600 flex items-center">
+                  <FaHashtag className="text-lg mr-2" />
+                  Capacity: {hall.capacity}
                 </p>
                 
                 {hall.allocatedTo && (

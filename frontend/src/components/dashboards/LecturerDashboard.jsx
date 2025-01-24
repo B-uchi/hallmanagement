@@ -6,10 +6,10 @@ import { IoClose, IoLocationOutline, IoCalendarOutline, IoTrashOutline } from 'r
 
 const RequestModal = ({ hall, onClose, onSubmit }) => {
   const [examTitle, setExamTitle] = useState('');
-
+  const [examDate, setExamDate] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(examTitle);
+    onSubmit(examTitle, examDate);
     
   };
 
@@ -37,6 +37,19 @@ const RequestModal = ({ hall, onClose, onSubmit }) => {
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
               value={examTitle}
               onChange={(e) => setExamTitle(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="examDate" className="block text-sm font-medium text-gray-700 mb-1">
+              Exam Date
+            </label>
+            <input
+              id="examDate"
+              type="date"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              value={examDate}
+              onChange={(e) => setExamDate(e.target.value)}
               required
             />
           </div>
@@ -93,10 +106,11 @@ const LecturerDashboard = () => {
     setSelectedHall(hall);
   };
 
-  const handleRequestSubmit = async (examTitle) => {
+  const handleRequestSubmit = async (examTitle, examDate) => {
     try {
       await api.post(`/halls/lecturer/${selectedHall._id}/request`, {
         examTitle,
+        examDate,
       });
       setSelectedHall(null);
       fetchRequests();
@@ -146,7 +160,7 @@ const LecturerDashboard = () => {
                   <div className="mt-4 space-y-2">
                     <p className="text-gray-600 flex items-center">
                       <IoCalendarOutline className="text-sm mr-2" />
-                      {request.examTitle}
+                      {request.examTitle} ({request.examDate?.split('T')[0]})
                     </p>
                   </div>
                   <button

@@ -9,6 +9,7 @@ const HallForm = ({ hall, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
     name: hall?.name || '',
     location: hall?.location || '',
+    capacity: hall?.capacity || '',
   })
 
   const handleSubmit = (e) => {
@@ -43,6 +44,20 @@ const HallForm = ({ hall, onSubmit, onCancel }) => {
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
           value={formData.location}
           onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="capacity" className="block text-sm font-medium text-gray-700 mb-1">
+          Capacity
+        </label>
+        <input
+          id="capacity"
+          type="number"
+          placeholder="Enter hall capacity"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+          value={formData.capacity}
+          onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
           required
         />
       </div>
@@ -189,7 +204,7 @@ const AdminDashboard = () => {
                     </p>
                     <p className="text-gray-600 flex items-center">
                       <IoCalendarOutline className="text-sm mr-2" />
-                      {request.examTitle}
+                      {request.examTitle} ({request.examDate?.split('T')[0]})
                     </p>
                   </div>
                   <button
