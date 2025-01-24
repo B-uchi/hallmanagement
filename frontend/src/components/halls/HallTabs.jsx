@@ -165,7 +165,7 @@ const HallTabs = ({ userRole, onRequestHall, rerender, onEditHall }) => {
                   className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center"
                 >
                   <IoAddCircleOutline className="text-lg mr-2" />
-                  Request Hall
+                  Request Hall 
                 </button>
               )}
             </div>
