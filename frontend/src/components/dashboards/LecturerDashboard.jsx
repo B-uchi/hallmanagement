@@ -10,6 +10,7 @@ const RequestModal = ({ hall, onClose, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(examTitle);
+    
   };
 
   return (
